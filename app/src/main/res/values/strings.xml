@@ -3,4 +3,5 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_profile_page">ProfilePage</string>
     <string name="title_activity_sell_crop">SellCrop</string>
+    <string name="title_activity_crop_list">CropList</string>
 </resources>

@@ -47,7 +47,7 @@
             android:weightSum="2">
 
             <Button
-                android:text="Sell crop"
+                android:text="Sell \ncrop"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/sellCrop"
@@ -56,10 +56,10 @@
                 android:textSize="14sp" />
 
             <Button
-                android:text="Buy crop"
+                android:text="Buy \ncrop"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/button"
+                android:id="@+id/buyCrop"
                 android:layout_weight="1"
                 android:textSize="14sp"
                 android:textStyle="normal|bold" />
@@ -73,7 +73,7 @@
             android:weightSum="2">
 
             <Button
-                android:text="ask expert"
+                android:text="ask \nexpert"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/button4"
@@ -82,7 +82,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:text="answer queries"
+                android:text="answer \nqueries"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/button3"
@@ -99,7 +99,7 @@
             android:weightSum="2">
 
             <Button
-                android:text="Fertilizer guide"
+                android:text="Fertilizer \nguide"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/button6"
@@ -108,7 +108,7 @@
                 android:textStyle="normal|bold" />
 
             <Button
-                android:text="Crop info"
+                android:text="Crop \ninfo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/button5"

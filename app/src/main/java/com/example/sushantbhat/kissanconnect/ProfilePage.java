@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class ProfilePage extends Activity {
     TextView welcomeMesg;
-    Button sellCrop;
+    Button sellCrop, buyCrop;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +22,7 @@ public class ProfilePage extends Activity {
         welcomeMesg= (TextView)findViewById(R.id.welcomeMsg);
         welcomeMesg.setText("Welcome " + user);
         sellCrop = (Button) findViewById(R.id.sellCrop);
+        buyCrop = (Button) findViewById(R.id.buyCrop);
 
         sellCrop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +34,19 @@ public class ProfilePage extends Activity {
                 }
                 else{
                     showError("farmers");
+                }
+            }
+        });
+
+        buyCrop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userType.equals("Consumers")) {
+                    Intent i = new Intent(ProfilePage.this, CropList.class);
+                    startActivity(i);
+                }
+                else{
+                    showError("consumers");
                 }
             }
         });

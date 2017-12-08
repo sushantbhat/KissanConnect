@@ -41,6 +41,7 @@ public class Welcome extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //getCrop();
                 validateUser();
             }
         });
@@ -54,5 +55,6 @@ public class Welcome extends AppCompatActivity {
         bw.execute("login",usrname,passw, userTyp);
 
     }
+
 
 }
