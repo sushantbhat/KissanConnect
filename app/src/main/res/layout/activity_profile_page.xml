@@ -47,7 +47,7 @@
             android:weightSum="2">
 
             <Button
-                android:text="Sell \ncrop"
+                android:text=" Sell \n crop"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/sellCrop"
@@ -56,7 +56,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:text="Buy \ncrop"
+                android:text=" Buy \n crop"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/buyCrop"
@@ -73,19 +73,19 @@
             android:weightSum="2">
 
             <Button
-                android:text="ask \nexpert"
+                android:text=" ask \n expert"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/button4"
+                android:id="@+id/askExpert"
                 android:layout_weight="1"
                 android:textStyle="normal|bold"
                 android:textSize="14sp" />
 
             <Button
-                android:text="answer \nqueries"
+                android:text=" answer \n queries"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/button3"
+                android:id="@+id/answerQueries"
                 android:layout_weight="1"
                 android:textStyle="normal|bold"
                 android:textSize="14sp" />
@@ -99,19 +99,19 @@
             android:weightSum="2">
 
             <Button
-                android:text="Fertilizer \nguide"
+                android:text=" Fertilizer \n guide"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/button6"
+                android:id="@+id/fertilizerGuide"
                 android:layout_weight="1"
                 android:textSize="14sp"
                 android:textStyle="normal|bold" />
 
             <Button
-                android:text="Crop \ninfo"
+                android:text=" Crop \n info"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/button5"
+                android:id="@+id/cropInfo"
                 android:layout_weight="1"
                 android:textSize="14sp"
                 android:textStyle="normal|bold" />

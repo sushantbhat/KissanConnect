@@ -23,10 +23,10 @@
             android:layout_weight=".5">
 
             <TextView
-                android:text="add crop details"
+                android:text="enter crop details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView7"
+                android:id="@+id/headingText"
                 android:layout_weight="1"
                 android:textStyle="normal|bold"
                 android:textAllCaps="true"
@@ -45,7 +45,7 @@
                 android:text="Crop name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView8"
+                android:id="@+id/cropnameText"
                 android:layout_weight="2" />
 
             <EditText
@@ -65,16 +65,16 @@
             android:layout_weight="1">
 
             <TextView
-                android:text="Price/kg"
+                android:text="Price / kg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView"
+                android:id="@+id/priceText"
                 android:layout_weight="2" />
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="numberDecimal"
                 android:ems="10"
                 android:id="@+id/price"
                 android:layout_weight="3" />
@@ -92,13 +92,13 @@
                 android:text="Quantity(kg)"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textVie8"
+                android:id="@+id/quantityText"
                 android:layout_weight="2" />
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="numberDecimal"
                 android:ems="10"
                 android:id="@+id/quantity"
                 android:layout_weight="3" />
@@ -113,7 +113,7 @@
             android:layout_weight="1">
 
             <Button
-                android:text="Submit"
+                android:text="save details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/submitButton"

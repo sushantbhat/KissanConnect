@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.ProfilePage">
+
+    <item
+        android:id="@+id/LangChange"
+
+        android:orderInCategory="100"
+        android:title="Change Language"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/LogOut"
+
+        android:orderInCategory="100"
+        android:title="Log out"
+        app:showAsAction="never" />
+
+</menu>

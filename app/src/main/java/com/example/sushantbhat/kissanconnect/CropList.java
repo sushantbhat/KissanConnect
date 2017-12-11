@@ -1,5 +1,6 @@
 package com.example.sushantbhat.kissanconnect;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Activity;
@@ -17,13 +18,17 @@ public class CropList extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_list);
-        getCrop();
+
+        SharedPreferences prefs = getSharedPreferences("LangChoice", MODE_PRIVATE);
+        String lang = prefs.getString("lang","en");
+
+        getCrop(lang);
         //init();
     }
 
-    public void getCrop(){
+    public void getCrop(String lang){
         BackgroundWorker bw = new BackgroundWorker(this);
-        bw.execute("getCrop");
+        bw.execute("getCrop" , lang);
     }
 
     public void init() {
@@ -91,4 +96,6 @@ public class CropList extends Activity {
     void sayHello(int i){
         Toast.makeText(this, "Hello" + i , Toast.LENGTH_LONG).show();
     }
+
+
 }
