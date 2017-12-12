@@ -2,6 +2,7 @@ package com.example.sushantbhat.kissanconnect;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.InterfaceAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -54,6 +56,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         String register_url = "http://dollarbee.000webhostapp.com/register.php";
         String addCrop_url = "http://dollarbee.000webhostapp.com/addCrop.php";
         String getCrop_url = "http://dollarbee.000webhostapp.com/cropList.php";
+        String sellerDetails_url = "http://dollarbee.000webhostapp.com/sellerDetails.php";
         if(type.equals("login")) {
             try {
                 String user_name = params[1];
@@ -252,10 +255,47 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 if(widgetType.equals("AlertDialog")){
                     append = params[5];
                     result += ";" + append;
+                    if(append.equals("AddCrop Success")){
+                        username = params[6];
+                    }
+
                 }
                 return "^Lang^" + result;
 
             }catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if(type.equals("sellerDetails")){
+            try {
+                String seller = params[1];
+                lang = params[2];
+                URL url = new URL(sellerDetails_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("seller_name","UTF-8")+"="+URLEncoder.encode(seller,"UTF-8");
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));
+                String result="";
+                String line="";
+                while((line = bufferedReader.readLine())!= null) {
+                    result += line;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return result;
+            } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -308,7 +348,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             });*/
             widgetType = "AlertDialog";
             BackgroundWorker bw = new BackgroundWorker(context);
-            bw.execute("langChange", lang, null, "Note / Crop details added successfully. You will be notified once we find consumer.", widgetType, "AddCrop Success");
+            bw.execute("langChange", lang, null, "Note / Crop details added successfully. You will be notified once we find consumer.", widgetType, "AddCrop Success", username);
 
         }
         else if(result.equals("Register error blank")){
@@ -397,6 +437,16 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 alertDialog.show();
             }
         }
+        else if(result.startsWith("sellerDetails")){
+            result = result.replace("sellerDetails","");
+            //alertDialog.setMessage(result);
+            //alertDialog.show();
+            sellerDetail(result);
+        }
+        else if(result.equals("Details error")){
+            alertDialog.setMessage(result);
+            alertDialog.show();
+        }
         else{
             //alertDialog.setMessage(result);
             //alertDialog.show();
@@ -406,6 +456,34 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         }
 
     }
+
+    void sellerDetail(String result){
+        String data[] = result.split(";");
+        BackgroundWorker bw;
+        String widgetType = "TextView";
+
+        String word = data[0];
+        String id = Integer.toString(R.id.NameValue);
+        bw = new BackgroundWorker(context);
+        bw.execute("langChange",lang,id,word,widgetType);
+
+        word = data[1];
+        id = Integer.toString(R.id.PhoneValue);
+        bw = new BackgroundWorker(context);
+        bw.execute("langChange",lang,id,word,widgetType);
+
+        word = data[2];
+        id = Integer.toString(R.id.AddressValue);
+        bw = new BackgroundWorker(context);
+        bw.execute("langChange",lang,id,word,widgetType);
+
+        word = data[3];
+        id = Integer.toString(R.id.EmailValue);
+        bw = new BackgroundWorker(context);
+        bw.execute("langChange",lang,id,word,widgetType);
+
+    }
+
 
     @Override
     protected void onProgressUpdate(Void... values) {
@@ -447,22 +525,22 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         TextView tv2 = new TextView(context);
         tv2.setId(new Integer(2));
         tv2.setTypeface(null, Typeface.BOLD);
-        tv2.setText("PRICE / kg ");
+        tv2.setText("PRICE/kg ");
         tv2.setTextColor(Color.WHITE);
         tv2.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
         //setParams(tv2);
         tbrow0.addView(tv2);
-        new BackgroundWorker(context).execute("langChange",lang,Integer.toString(2),"PRICE ",wType);
+        new BackgroundWorker(context).execute("langChange",lang,Integer.toString(2),"PRICE / kg ",wType);
 
         TextView tv3 = new TextView(context);
         tv3.setId(new Integer(3));
         tv3.setTypeface(null, Typeface.BOLD);
-        tv3.setText("QUANTITY (kg) ");
+        tv3.setText("QUANTITY(kg) ");
         tv3.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
         tv3.setTextColor(Color.WHITE);
         //setParams(tv3);
         tbrow0.addView(tv3);
-        new BackgroundWorker(context).execute("langChange",lang,Integer.toString(3),"QUANTITY ",wType);
+        new BackgroundWorker(context).execute("langChange",lang,Integer.toString(3),"QUANTITY (kg) ",wType);
 
         TextView tv4 = new TextView(context);
         tv4.setText(" ");
@@ -499,7 +577,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             TextView t3v = new TextView(context);
             t3v.setId(new Integer(base*10+3));
-            t3v.setText("Rs." + cropData[2] + " ");
+            t3v.setText(cropData[2] + " ");
             t3v.setTextColor(Color.WHITE);
             //t3v.setGravity(Gravity.CENTER);
             //setParams(t3v);
@@ -508,7 +586,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             TextView t4v = new TextView(context);
             t4v.setId(new Integer(base*10+4));
-            t4v.setText(cropData[3] + "kg" + " ");
+            t4v.setText(cropData[3] + " ");
             t4v.setTextColor(Color.WHITE);
             //t4v.setGravity(Gravity.CENTER);
             //setParams(t4v);
@@ -522,11 +600,11 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             btn.setGravity(Gravity.CENTER);
             btn.setTextSize(TypedValue.COMPLEX_UNIT_SP,14);
             tbrow.addView(btn);
-            final int finalI = i;
+            final String s = cropData[1];
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    sayHello(finalI);
+                    changePage(s);
 
                 }
             });
@@ -535,8 +613,13 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         }
 
     }
-    void sayHello(int i){
-        Toast.makeText(context, "Hello" + i , Toast.LENGTH_LONG).show();
+    void changePage(String s){
+
+        Intent i = new Intent(context, CropDetails.class);
+        i.putExtra("seller", s);
+        context.startActivity(i);
+
+        //Toast.makeText(context, "Hello" + i , Toast.LENGTH_LONG).show();
     }
 
     void setParams(TextView tv){

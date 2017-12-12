@@ -198,27 +198,7 @@ public class ProfilePage extends AppCompatActivity {
                                     editor2.apply();
                                     //changeLang("en");
 
-                                    TextView tv = (TextView) findViewById(R.id.welcomeMsg);
-                                    tv.setText("Welcome");
-
-                                    Button button = (Button) findViewById(R.id.sellCrop);
-                                    button.setText("Sell \n crop");
-
-                                    button = (Button) findViewById(R.id.buyCrop);
-                                    button.setText("Buy \n crop");
-
-                                    button = (Button) findViewById(R.id.cropInfo);
-                                    button.setText("Crop \n info");
-
-                                    button = (Button) findViewById(R.id.fertilizerGuide);
-                                    button.setText("Fertilizer \n guide");
-
-                                    button = (Button) findViewById(R.id.answerQueries);
-                                    button.setText("Answer \n queries");
-
-                                    button = (Button) findViewById(R.id.askExpert);
-                                    button.setText("Ask \n expert");
-
+                                    setTOEnglish();
 
                                 } catch (Exception e) {
 
@@ -229,6 +209,7 @@ public class ProfilePage extends AppCompatActivity {
                                     SharedPreferences.Editor editor2 = getSharedPreferences("LangChoice", MODE_PRIVATE).edit();
                                     editor2.putString("lang", "kn");
                                     editor2.apply();
+                                    setTOEnglish();
                                     changeLang("kn");
                                 } catch (Exception e) {
 
@@ -239,6 +220,7 @@ public class ProfilePage extends AppCompatActivity {
                                     SharedPreferences.Editor editor2 = getSharedPreferences("LangChoice", MODE_PRIVATE).edit();
                                     editor2.putString("lang", "hi");
                                     editor2.apply();
+                                    setTOEnglish();
                                     changeLang("hi");
                                 } catch (Exception e) {
 
@@ -262,6 +244,30 @@ public class ProfilePage extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+
+    }
+
+    void setTOEnglish() {
+        TextView tv = (TextView) findViewById(R.id.welcomeMsg);
+        tv.setText("Welcome");
+
+        Button button = (Button) findViewById(R.id.sellCrop);
+        button.setText("Sell \n crop");
+
+        button = (Button) findViewById(R.id.buyCrop);
+        button.setText("Buy \n crop");
+
+        button = (Button) findViewById(R.id.cropInfo);
+        button.setText("Crop \n info");
+
+        button = (Button) findViewById(R.id.fertilizerGuide);
+        button.setText("Fertilizer \n guide");
+
+        button = (Button) findViewById(R.id.answerQueries);
+        button.setText("Answer \n queries");
+
+        button = (Button) findViewById(R.id.askExpert);
+        button.setText("Ask \n expert");
     }
 
 }
